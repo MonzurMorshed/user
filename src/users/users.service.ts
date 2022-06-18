@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, InsertResult, FindConditions } from 'typeorm';
+import { Repository, InsertResult, FindOneOptions } from 'typeorm';
 import { UserEntity } from './user.entity';
 
 
@@ -11,7 +11,7 @@ export class UsersService {
     private readonly userRepository: Repository<UserEntity>
   ) {}
 
-  findOne(query: FindConditions<UserEntity>): Promise<UserEntity> {
+  findOne(query: FindOneOptions<UserEntity>): Promise<UserEntity> {
     return this.userRepository.findOne(query);
   }
 

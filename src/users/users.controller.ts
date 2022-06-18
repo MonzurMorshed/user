@@ -4,7 +4,7 @@ import { AuthGuard } from 'src/guards/AuthGuards';
 import { UserEntity } from './user.entity';
 import { UsersService } from './users.service';
 
-
+export type User = any;
 @Controller()
 export class UserController {
   constructor(
@@ -12,8 +12,13 @@ export class UserController {
   ) { }
 
   @MessagePattern({ role: 'user', cmd: 'get' })
-  getUser(data: any): Promise<UserEntity> {
-    return this.userService.findOne({ username: data.username });
+  /*getUser(data: any): Promise<UserEntity> {
+    return this.userService.findOne({ email: data.email });
+  }
+  */
+
+  async getUser(user: any): Promise<UserEntity | undefined> {
+    return this.userService.findOne(user.email);
   }
 
   @UseGuards(AuthGuard)

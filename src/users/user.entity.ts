@@ -9,12 +9,12 @@ export class UserEntity {
   id: number;
 
   @Column()
-  @Min(8)
-  password: string;
-
-  @Column()
   @IsEmail()
   email: string;
+
+  @Column()
+  @Min(8)
+  password: string;
 
   @CreateDateColumn()
   createdAt: Date;
